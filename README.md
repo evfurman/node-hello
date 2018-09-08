@@ -1,5 +1,3 @@
-## Node Hello!
-
 Node Hello is a fun little exercise in automating the deployment of a Node.js webapp with an nginx reverse proxy using EKS and Helm.
 
 *DEPENDENCIES:*
