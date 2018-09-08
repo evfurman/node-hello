@@ -616,7 +616,6 @@ Resources:
       IamInstanceProfile: !Ref NodeInstanceProfile
       ImageId: !FindInMap [ AWSRegionToAMI, !Ref "AWS::Region", AMI ]
       InstanceType: !Ref NodeInstanceType
-      KeyName: evfurman-personal
       SecurityGroups:
       - !Ref NodeSecurityGroup
       BlockDeviceMappings:
