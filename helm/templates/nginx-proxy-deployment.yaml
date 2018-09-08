@@ -1,0 +1,43 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "hello-world.fullname" . }}-nginx-deployment
+  namespace: "{{ .Values.environment }}"
+  labels:
+    app: {{ template "hello-world.fullname" . }}
+    chart: {{ template "hello-world.chart" . }}
+    component: "{{ .Values.nginx.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}    
+spec:
+  selector: 
+    matchLabels:
+      app: {{ template "hello-world.fullname" . }}
+      component: "{{ .Values.nginx.name }}"
+      release: {{ .Release.Name }}
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:      
+        app: {{ template "hello-world.fullname" . }}
+        component: "{{ .Values.nginx.name }}"
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ template "hello-world.fullname" . }}-nginx
+        image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
+        imagePullPolicy: "{{ .Values.nginx.image.pullPolicy }}"
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: nginx-proxy-config
+      restartPolicy: Always
+      volumes:
+      - name: nginx-proxy-config
+        configMap:
+          name: {{ template "hello-world.fullname" . }}-configmap
+status: {}

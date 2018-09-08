@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "hello-world.fullname" . }}-nginx-service
+  namespace: "{{ .Values.environment }}"
+  labels:
+    app: {{ template "hello-world.fullname" . }}
+    chart: {{ template "hello-world.chart" . }}
+    component: "{{ .Values.nginx.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+{{- if eq .Values.environment "development" }}
+    nodePort: {{ .Values.nginx.service.nodePort }}
+  type: NodePort
+{{- end }}
+  selector:
+    app: {{ template "hello-world.fullname" . }}
+    component: "{{ .Values.nginx.name }}"
+    release: {{ .Release.Name }}      
+status:
+  loadBalancer: {}

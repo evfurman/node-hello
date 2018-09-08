@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "hello-world.fullname" . }}-node-deployment
+  namespace: "{{ .Values.environment }}"
+  labels:
+    app: {{ template "hello-world.fullname" . }}
+    chart: {{ template "hello-world.chart" . }}
+    component: "{{ .Values.node.fullname }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}    
+spec:
+  selector:      
+    matchLabels:
+      app: {{ template "hello-world.fullname" . }}
+      component: "{{ .Values.node.name }}"
+      release: {{ .Release.Name }}        
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:      
+        app: {{ template "hello-world.fullname" . }}
+        component: "{{ .Values.node.name }}"
+        release: {{ .Release.Name }}            
+    spec:
+      containers:
+      - name: {{ template "hello-world.fullname" . }}-node
+        image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag }}"
+        imagePullPolicy: "{{ .Values.node.image.pullPolicy }}"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        ports:
+        - containerPort: 3000
+        resources: {}
+        workingDir: /usr/src/app
+      restartPolicy: Always
+status: {}

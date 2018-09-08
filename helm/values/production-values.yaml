@@ -1,0 +1,22 @@
+# Production values for node-hello.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+environment: production
+
+nginx:
+  name: nginx
+  image:
+    repository: nginx
+    tag: alpine
+    pullPolicy: IfNotPresent
+  service:  
+      
+node:
+  name: node
+  image:
+    repository: evfurman/node-hello
+    tag: production
+    pullPolicy: Always

@@ -1,0 +1,24 @@
+# Default values for node-hello.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+environment: development
+
+nginx:
+  name: nginx
+  image:
+    repository: nginx
+    tag: alpine
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    nodePort: 30000
+     
+node:
+  name: node
+  image:
+    repository: evfurman/node-hello
+    tag: development
+    pullPolicy: Always

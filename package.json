@@ -1,0 +1,26 @@
+{
+  "name": "node-hello",
+  "version": "1.0.0",
+  "description": "a simple Hello World in Node.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evfurman/node-hello.git"
+  },
+  "keywords": [
+    "hello-world",
+    "node"
+  ],
+  "author": "evan furman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evfurman/node-hello/issues"
+  },
+  "homepage": "https://github.com/evfurman/node-hello#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

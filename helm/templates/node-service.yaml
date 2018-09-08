@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "hello-world.fullname" . }}-node-service
+  namespace: "{{ .Values.environment }}"
+  labels:
+    app: {{ template "hello-world.fullname" . }}
+    chart: {{ template "hello-world.chart" . }}
+    component: "{{ .Values.node.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}  
+spec:
+  ports:
+  - name: http
+    port: 3000
+    targetPort: 3000
+  selector:
+    app: {{ template "hello-world.fullname" . }}
+    component: "{{ .Values.node.name }}"
+    release: {{ .Release.Name }}      
+status:
+  loadBalancer: {}

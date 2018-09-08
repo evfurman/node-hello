@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "hello-world.fullname" . }}-configmap
+  namespace: "{{ .Values.environment }}"
+  labels:
+    app: {{ template "hello-world.fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.nginx.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+
+  default.conf: |
+      server {
+        listen 80;
+        allow all;
+
+        location / {
+          resolver        8.8.8.8; 
+          proxy_pass      http://{{ template "hello-world.fullname" . }}-node-service:3000;
+        }
+      }
