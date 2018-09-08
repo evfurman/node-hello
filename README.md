@@ -65,8 +65,13 @@ NOTE: If you don't see nodes registering, try killing the running instances. The
 
 `curl --header 'Host: staging.node-hello.com' $(kubectl get svc nginx-ingress-controller -n default -o jsonpath="{.status.loadBalancer.ingress[*].hostname}")`  
 
+## Logging
+
+Cluster-level logs can be access via the `kubectl logs -f {POD_NAME}` command. The official nginx image creates a symbolic link from /var/log/nginx/access.log to /dev/stdout , and creates another symbolic link from /var/log/nginx/error.log to /dev/stderr , overwriting the log files and causing logs to be sent to the relevant special device instead. 
+
 ## To Do
 
+* [Logs to Cloudwatch Using Fluentd](https://github.com/helm/charts/tree/master/incubator/fluentd-cloudwatch)
 * Pipeline w/ Gitlab-CI
 * Move Nodes to Spotinst
 * ALB Ingress Controller?
