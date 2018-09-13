@@ -54,7 +54,7 @@ NOTE: If you don't see nodes registering, try killing the running instances. The
 
 7.) Deploy the Helm Chart
 
-`cd node-hello && helm install -f values/production-values.yaml .`  
+`cd node-hello && helm install -f values/production-values.yaml --namespace=production .`  
 `cd node-hello && helm install -f values/staging-values.yaml --namespace=staging .`  
 
 8.) Test
