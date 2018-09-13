@@ -16,7 +16,7 @@ Node Hello is a fun little exercise in automating the deployment of a Node.js we
 
 2.) Deploy the Helm Chart
 
-`cd node-hello && helm install -f values/development-values.yaml .`  
+`cd node-hello && helm install -f values/development-values.yaml .`
 
 3.) Test
 
