@@ -2,10 +2,11 @@ Node Hello is a fun little exercise in automating the deployment of a Node.js we
 
 *DEPENDENCIES:*
 
-- [kubectl](https://docs.aws.amazon.com/eks/latest/userguide/configure-kubectl.html)  
+- [awscli](https://aws.amazon.com/cli/)
 - [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/configure-kubectl.html)  
-- [helm](https://github.com/helm/helm/blob/master/docs/install.md)  
 - [docker-for-mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)  
+- [helm](https://github.com/helm/helm/blob/master/docs/install.md)  
+- [kubectl](https://docs.aws.amazon.com/eks/latest/userguide/configure-kubectl.html)  
 
 ## Local Development
 
