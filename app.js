@@ -10,7 +10,7 @@ const HOST = '0.0.0.0';
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('hello world\n\nenvironment: production\n');
+  res.send('hello world\n\nenvironment: staging\n');
 });
 
 app.get('/healthz', (req, res) => {
