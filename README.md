@@ -1,6 +1,6 @@
 Node Hello is a fun little exercise in automating the deployment of a Node.js webapp with an nginx reverse proxy using EKS and Helm.
 
-## DEPENDENCIES:
+## Dependencies:
 
 - [awscli](https://aws.amazon.com/cli/)
 - [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/configure-kubectl.html)  
